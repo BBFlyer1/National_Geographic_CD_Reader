@@ -24,6 +24,7 @@ import datetime
 import os
 import psutil
 import re
+import sys
 import tkinter as tk
 # import tkinter as Grid
 import tkinter.ttk as ttk
@@ -480,6 +481,11 @@ def on_window_resize(event):
 
 def get_compile_time(file_path, fmt='%m-%d-%Y %H:%M:%S'):
     """
+    Return the last modification time of the running program.
+
+    Modified from original with help from MS Copilot.
+    Works both in normal Python and in a PyInstaller one-file EXE.
+
     Get the last time the calling program was modified.
 
     Get the last time the calling program was modified and
@@ -502,12 +508,16 @@ def get_compile_time(file_path, fmt='%m-%d-%Y %H:%M:%S'):
         calling file was modified.
 
     """
+    # Detect PyInstaller environment
+    if getattr(sys, 'frozen', False):
+        # Running inside a PyInstaller EXE
+        target = sys.executable
+    else:
+        # Running from source
+        target = file_path if file_path else __file__
+
     # Get the last modification time
-    mod_time = os.path.getmtime(file_path)
+    mod_time = os.path.getmtime(target)
 
     # Convert it to a readable format
-    mod_time =\
-        datetime.datetime.fromtimestamp(mod_time).\
-        strftime(fmt)
-
-    return mod_time
+    return datetime.datetime.fromtimestamp(mod_time).strftime(fmt)
