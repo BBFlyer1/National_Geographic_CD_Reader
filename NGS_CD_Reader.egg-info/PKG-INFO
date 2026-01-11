@@ -1,0 +1,11 @@
+Metadata-Version: 2.4
+Name: NGS_CD_Reader
+Version: 1.0.0
+Summary: A Python package to read the first 100 years of National
+Author: Robert Bumpous
+Author-email: BBFlyer1@comcast.net
+License-File: LICENSE
+Dynamic: author
+Dynamic: author-email
+Dynamic: license-file
+Dynamic: summary

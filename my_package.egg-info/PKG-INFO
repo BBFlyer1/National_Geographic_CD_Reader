@@ -1,0 +1,11 @@
+Metadata-Version: 2.4
+Name: my_package
+Version: 1.0.0
+Summary: A simple Python package
+Author: Your Name
+Author-email: your_email@example.com
+License-File: LICENSE
+Dynamic: author
+Dynamic: author-email
+Dynamic: license-file
+Dynamic: summary

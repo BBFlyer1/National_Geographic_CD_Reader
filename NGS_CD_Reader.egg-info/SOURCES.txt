@@ -1,0 +1,15 @@
+LICENSE
+README.md
+setup.py
+NGS_CD_Reader.egg-info/PKG-INFO
+NGS_CD_Reader.egg-info/SOURCES.txt
+NGS_CD_Reader.egg-info/dependency_links.txt
+NGS_CD_Reader.egg-info/top_level.txt
+src/NGS_CD_Reader.py
+src/__init__.py
+src/app_class.py
+src/ngs_class.py
+src/util_files.py
+src/util_monitors.py
+src/util_mov.py
+src/util_ngs.py
