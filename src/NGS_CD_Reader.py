@@ -45,7 +45,7 @@ about = f"National Geographic Society Magazines on CD\n\
             Reader Application\n\
 by Robert Bumpous -- BBFlyer1@comcast.net\n\
 Version {version}\n\
-{u_files.gct(o_path.abspath(__file__))}"
+{u_files.get_compile_time(o_path.abspath(__file__))}"
 
 # set window title
 title = "NGS Magazines on CD"

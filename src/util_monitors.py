@@ -122,7 +122,8 @@ class cdrom_drawer_monitor(MonitoredWorker):
         app.process_results(self._drive_has_ngs_cd)
         try:
             self.path = app.ng_base_path
-        except:
+        except (FileNotFoundError, IOError) as e:
+            print("File error: {}".format(e))
             pass
 
     def worker_thread(self):

@@ -26,15 +26,13 @@ import util_mov as u_mov
 
 
 class NgsApp(a_class.BaseApp):
-    """
-    Application to display National Geographic Magazines from a CD.
+    """Application to display National Geographic Magazines from a CD.
 
     NGSApp extends BaseApp.
 
     This is an application to display National Geographic magazines from
     The National Geographic CD set.
     """
-    
 
     def __init__(self, menus: dict = None, title='', about=''):
         """Initialize the NgsApp class.
@@ -141,13 +139,13 @@ class NgsApp(a_class.BaseApp):
                             foreground="black", background="white")
         # Backward Button
         self.back_btn = tk.ttk.Button(self.header, style="dir.TButton",
-                                   text='< Backward', command=self.backward)
+                                      text='< Backward', command=self.backward)
         self.back_btn.grid(column=0, row=0, padx=2, pady=2)
         # State is not part of style, so use the following to disable btn.
         # self.back_btn.config(state='disabled')
         # Forward Button
         self.fwd_btn = tk.ttk.Button(self.header, style='dir.TButton',
-                                  text='Forward >', command=self.forward)
+                                     text='Forward >', command=self.forward)
         self.fwd_btn.grid(column=4, row=0, padx=2, pady=2)
 
     def _config_hdr_labels(self):
@@ -166,11 +164,11 @@ class NgsApp(a_class.BaseApp):
                                  width=6)
         # Page Label
         self.page_lbl = tk.ttk.Label(self.header, style='pg.TLabel',
-                                  text="Page: ")
+                                     text="Page: ")
         self.page_lbl.grid(column=1, row=0, padx=2, pady=2)
         # Pages Label
         self.pages_lbl = tk.ttk.Label(self.header, style='pg.TLabel',
-                                   text=" of ")
+                                      text=" of ")
         self.pages_lbl.grid(column=3, row=0, padx=2, pady=2)
         # Month Year Label Style
         mo_yr_style = tk.ttk.Style()
@@ -179,8 +177,8 @@ class NgsApp(a_class.BaseApp):
                               justify='center')
         # Month Year Label
         self.mon_yr_lbl = tk.ttk.Label(self.header, style='mo_yr.TLabel',
-                                    text=(str() + " " + str()),
-                                    anchor=tk.CENTER)
+                                       text=(str() + " " + str()),
+                                       anchor=tk.CENTER)
         self.mon_yr_lbl.grid(column=5, row=0, padx=2, pady=2)
 
     def _config_hdr_page_entry(self):
@@ -196,9 +194,9 @@ class NgsApp(a_class.BaseApp):
         entry_style.configure('en.TEntry', font=('calibre', 12, 'bold'),
                               foreground="black", fieldbackground="blue",
                               justify='right')
-        self.page_entry = tk.ttk.Entry(self.header, font=('calibre', 12, 'bold'),
-                                    justify='right', width=5,
-                                    background="blue")
+        self.page_entry = tk.ttk.Entry(self.header, font=('calibre', 12,
+                                       'bold'), justify='right', width=5,
+                                       background="blue")
         self.page_entry.grid(column=2, row=0, padx=2, pady=2)
         # bind get_user_page to the enter key is pressed.
         self.page_entry.bind('<Return>', self.get_user_page)
@@ -249,7 +247,8 @@ class NgsApp(a_class.BaseApp):
         # Get a dictionary of dictionaries that contains the years
         # and months of each magazine folder on this disk and
         # the folder that contains that magazine.
-        self.mag_mo_yr_indx = u_files.build_magazine_index(ng_base_path, ng_date_range)
+        self.mag_mo_yr_indx = u_files.build_magazine_index(ng_base_path,
+                                                           ng_date_range)
         menu_bar = self.menubar
         # Create the main menu and add it to the root window
         # if after = False ie, there are no other menus

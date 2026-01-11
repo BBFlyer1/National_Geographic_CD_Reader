@@ -22,7 +22,8 @@ Created on Wed Jan  7 11:22:33 2026.
 
 @author: Bob
 """
-from tkinter import messagebox
+# from tkinter import messagebox
+import tkinter.messagebox as messagebox
 
 import os
 import subprocess

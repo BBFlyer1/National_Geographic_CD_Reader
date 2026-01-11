@@ -293,9 +293,9 @@ class BaseApp(tk.Tk):
 
         canvas = tk.Canvas(container)
         scrollbar_x = tk.ttk.Scrollbar(container, orient="horizontal",
-                                    command=canvas.xview)
+                                       command=canvas.xview)
         scrollbar_y = tk.ttk.Scrollbar(container, orient="vertical",
-                                    command=canvas.yview)
+                                       command=canvas.yview)
         canvas.configure(xscrollcommand=scrollbar_x.set,
                          yscrollcommand=scrollbar_y.set)
 
@@ -334,14 +334,14 @@ class BaseApp(tk.Tk):
 
         # add vertical and horizontal scroll bars.
         scrollbar_v = tk.ttk.Scrollbar(container,
-                                    orient='vertical',
-                                    command=document.yview)
+                                       orient='vertical',
+                                       command=document.yview)
         scrollbar_v.grid(column=1, row=0, sticky=tk.NS)
         document['yscrollcommand'] = scrollbar_v.set
 
         scrollbar_h = tk.ttk.Scrollbar(container,
-                                    orient='horizontal',
-                                    command=document.xview)
+                                       orient='horizontal',
+                                       command=document.xview)
         scrollbar_h.grid(column=0, row=1, sticky=tk.EW)
         document['yscrollcommand'] = scrollbar_h.set
         return document
@@ -404,7 +404,7 @@ class BaseApp(tk.Tk):
 
         except FileNotFoundError:
             tk.messagebox.showerror("Directory Not Found",
-                                 "The selected directory was not found.")
+                                    "The selected directory was not found.")
         self.path = path
         return path
 
@@ -429,7 +429,7 @@ class BaseApp(tk.Tk):
 
         except FileNotFoundError:
             tk.messagebox.showerror("File Not Found",
-                                 "The selected file was not found.")
+                                    "The selected file was not found.")
         self.path = path
         return path
 
