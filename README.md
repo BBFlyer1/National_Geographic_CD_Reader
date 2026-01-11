@@ -118,3 +118,12 @@ Created on Thu Dec 12 09:06:15 2024.
 
     A planned followup project is to create a print capability, so that
     specific pages may be printed.
+
+    Additions: 2
+    I have added a PyPy wheel (.whl) file, for python developers and a
+    windows executable file (.exe), for casual MS Windows users,
+    in the packages 'dist' subdirectory.  There are associated build files
+    in the 'build' directory.  To get the .exe to execute correctly, I had
+    to modify the routine (with the help of MS Copilot) the
+    'get_compile_time()' function in the util_files module to look for the
+     .exe compile time instead of the NGS_CD_Reader.py file.
