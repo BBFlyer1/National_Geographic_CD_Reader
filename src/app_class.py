@@ -24,9 +24,9 @@ __version__ = "0.5"
 
 __author__ = "Bob Bumpous <BBFlyer@comcast.net>"
 
-# from tkinter import filedialog
-# from tkinter import messagebox, ttk
-# from tkinter import Menu
+from tkinter import filedialog
+from tkinter import messagebox, ttk
+from tkinter import Menu
 
 import threading
 import tkinter as tk
@@ -163,10 +163,10 @@ class BaseApp(tk.Tk):
         Set up the self.header variable which is stored in the class
         and can be used by subclasses to build GUIs for specific apps.
         """
-        if isinstance(self.frame, tk.ttk.Frame):
-            self.header = tk.ttk.Frame(self.frame)
+        if isinstance(self.frame, ttk.Frame):
+            self.header = ttk.Frame(self.frame)
         else:
-            self.header = tk.ttk.Frame(self)
+            self.header = ttk.Frame(self)
         # by default, we are going to have 3 widgets, the center
         #    entry should be given preference.
         self.header.columnconfigure(0, weight=1)
@@ -182,10 +182,10 @@ class BaseApp(tk.Tk):
         Set up a self.body variable which is stored in the class
         and can be used by subclasses to build GUIs for specific apps.
         """
-        if isinstance(self.frame, tk.ttk.Frame):
-            self.body = tk.ttk.Frame(self.frame)
+        if isinstance(self.frame, ttk.Frame):
+            self.body = ttk.Frame(self.frame)
         else:
-            self.body = tk.ttk.Frame(self)
+            self.body = ttk.Frame(self)
         self.body.columnconfigure(0, weight=1)
 
     def _create_footer_frame(self):
@@ -197,10 +197,10 @@ class BaseApp(tk.Tk):
         Sets up the self.footer variable which is stored in the class
         and can be used by subclasses to build GUIs for specific apps.
         """
-        if isinstance(self.frame, tk.ttk.Frame):
-            self.footer = tk.ttk.Frame(self.frame)
+        if isinstance(self.frame, ttk.Frame):
+            self.footer = ttk.Frame(self.frame)
         else:
-            self.footer = tk.ttk.Frame(self)
+            self.footer = ttk.Frame(self)
         self.footer.columnconfigure(0, weight=1)
         self.footer.columnconfigure(1, weight=10)
         self.footer.columnconfigure(2, weight=1)
@@ -236,9 +236,9 @@ class BaseApp(tk.Tk):
         mb         The window menu bar that is created
 
         """
-        mb = tk.Menu(container)
+        mb = Menu(container)
         for menu_key in d.keys():
-            mnu = tk.Menu(mb, tearoff=0)
+            mnu = Menu(mb, tearoff=0)
             menu_items = d.get(menu_key)
             for mi in menu_items.keys():
                 # cmd could be a callable function or method.
@@ -292,10 +292,10 @@ class BaseApp(tk.Tk):
         container.grid(column=1, row=0, sticky='s')
 
         canvas = tk.Canvas(container)
-        scrollbar_x = tk.ttk.Scrollbar(container, orient="horizontal",
-                                       command=canvas.xview)
-        scrollbar_y = tk.ttk.Scrollbar(container, orient="vertical",
-                                       command=canvas.yview)
+        scrollbar_x = ttk.Scrollbar(container, orient="horizontal",
+                                    command=canvas.xview)
+        scrollbar_y = ttk.Scrollbar(container, orient="vertical",
+                                    command=canvas.yview)
         canvas.configure(xscrollcommand=scrollbar_x.set,
                          yscrollcommand=scrollbar_y.set)
 
@@ -333,15 +333,15 @@ class BaseApp(tk.Tk):
         # self.document.config(height=20, width=80)
 
         # add vertical and horizontal scroll bars.
-        scrollbar_v = tk.ttk.Scrollbar(container,
-                                       orient='vertical',
-                                       command=document.yview)
+        scrollbar_v = ttk.Scrollbar(container,
+                                    orient='vertical',
+                                    command=document.yview)
         scrollbar_v.grid(column=1, row=0, sticky=tk.NS)
         document['yscrollcommand'] = scrollbar_v.set
 
-        scrollbar_h = tk.ttk.Scrollbar(container,
-                                       orient='horizontal',
-                                       command=document.xview)
+        scrollbar_h = ttk.Scrollbar(container,
+                                    orient='horizontal',
+                                    command=document.xview)
         scrollbar_h.grid(column=0, row=1, sticky=tk.EW)
         document['yscrollcommand'] = scrollbar_h.set
         return document
@@ -353,14 +353,14 @@ class BaseApp(tk.Tk):
         # str_title = 'Function not implemented!'
         # str_message = '{}'.format(self.title())
         str_message = "This function is not yet implemented."
-        tk.messagebox.showinfo(self.title(), str_message)
+        messagebox.showinfo(self.title(), str_message)
     # Method for closing window
 
     def about(self):
         """Open the about dialog box for this app."""
         about_title = 'About {}'.format(self.title())
         about_message = '{}'.format(self.about)
-        tk.messagebox.showinfo(about_title, about_message)
+        messagebox.showinfo(about_title, about_message)
 
     def exit(self):
         """Close all open windows and exit the application."""
@@ -395,7 +395,7 @@ class BaseApp(tk.Tk):
 
         """
         try:
-            path = tk.filedialog.askdirectory(
+            path = filedialog.askdirectory(
                     # initialdir=self.cpath)
                     initialdir='/')
 
@@ -403,8 +403,8 @@ class BaseApp(tk.Tk):
                 self._file_action(path)
 
         except FileNotFoundError:
-            tk.messagebox.showerror("Directory Not Found",
-                                    "The selected directory was not found.")
+            messagebox.showerror("Directory Not Found",
+                                 "The selected directory was not found.")
         self.path = path
         return path
 
@@ -419,7 +419,7 @@ class BaseApp(tk.Tk):
 
         """
         try:
-            path = tk.filedialog.\
+            path = filedialog.\
                 askopenfilename(
                     initialdir=self.cpath,
                     filetypes=self.file_types)
@@ -428,8 +428,8 @@ class BaseApp(tk.Tk):
                 self._file_action(path)
 
         except FileNotFoundError:
-            tk.messagebox.showerror("File Not Found",
-                                    "The selected file was not found.")
+            messagebox.showerror("File Not Found",
+                                 "The selected file was not found.")
         self.path = path
         return path
 

@@ -22,8 +22,7 @@ Created on Wed Jan  7 11:22:33 2026.
 
 @author: Bob
 """
-# from tkinter import messagebox
-import tkinter.messagebox as messagebox
+from tkinter import messagebox
 
 import os
 import subprocess
@@ -114,10 +113,10 @@ def _play_ngs_mov(folder="EXIT", filename="EXIT01.MOV"):
     # self.geometry('625x1000')
     # Screen location given by "--video_x=, --video_y= or
     # --fullscreen
-    movie_options = ("--play-and-exit, --qt-minimal-view, ",
-                     "--width=625", "--height=1000",
-                     "--no-video-title-show",
-                     "--autoscale")
+    # movie_options = ("--play-and-exit, --qt-minimal-view, ",
+    #                  "--width=625", "--height=1000",
+    #                  "--no-video-title-show",
+    #                  "--autoscale")
     # open a windows program with a .MOV file.
     fn = str(get_directory(folder=folder))
     print("Path name is ", fn)

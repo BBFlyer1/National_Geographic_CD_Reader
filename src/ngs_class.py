@@ -10,22 +10,18 @@ the needs of a National Geographic Society CD Magazine Reader.
 # from pathlib import Path
 import pathlib
 import tkinter as tk
-# from tkinter import ttk
+from tkinter import ttk
 
-# from app_class import BaseApp
-import app_class as a_class
-# from util_files import (build_magazine_index, build_page_list,
-#                        decode_dir_name, get_image, get_directory,
-#                        _clear_frame)
-import util_files as u_files
-# from util_ngs import get_first_mo_yr
-import util_ngs as u_ngs
-# from util_mov import (play_intro_1, play_intro_2, play_intro_3,
-#                      play_intro_4, play_credits)
-import util_mov as u_mov
+from app_class import BaseApp
+from util_files import (build_magazine_index, build_page_list,
+                        decode_dir_name, get_image, get_directory,
+                        _clear_frame)
+from util_ngs import get_first_mo_yr
+from util_mov import (play_intro_1, play_intro_2, play_intro_3,
+                      play_intro_4, play_credits)
 
 
-class NgsApp(a_class.BaseApp):
+class NgsApp(BaseApp):
     """Application to display National Geographic Magazines from a CD.
 
     NGSApp extends BaseApp.
@@ -50,11 +46,11 @@ class NgsApp(a_class.BaseApp):
                               'About': self.about
                               },
                      'NGS Movies': {
-                             'NGS Globe': u_mov.play_intro_1,
-                             'NGS Interactive': u_mov.play_intro_2,
-                             'Kodak Film': u_mov.play_intro_3,
-                             'NGS Magazines': u_mov.play_intro_4,
-                             'Credits Movie': u_mov.play_credits
+                             'NGS Globe': play_intro_1,
+                             'NGS Interactive': play_intro_2,
+                             'Kodak Film': play_intro_3,
+                             'NGS Magazines': play_intro_4,
+                             'Credits Movie': play_credits
                              }
                      }
 
@@ -134,18 +130,18 @@ class NgsApp(a_class.BaseApp):
         None.
 
         """
-        btn_style = tk.ttk.Style()
+        btn_style = ttk.Style()
         btn_style.configure('dir.TButton', font=('calibre', 12, 'bold'),
                             foreground="black", background="white")
         # Backward Button
-        self.back_btn = tk.ttk.Button(self.header, style="dir.TButton",
-                                      text='< Backward', command=self.backward)
+        self.back_btn = ttk.Button(self.header, style="dir.TButton",
+                                   text='< Backward', command=self.backward)
         self.back_btn.grid(column=0, row=0, padx=2, pady=2)
         # State is not part of style, so use the following to disable btn.
         # self.back_btn.config(state='disabled')
         # Forward Button
-        self.fwd_btn = tk.ttk.Button(self.header, style='dir.TButton',
-                                     text='Forward >', command=self.forward)
+        self.fwd_btn = ttk.Button(self.header, style='dir.TButton',
+                                  text='Forward >', command=self.forward)
         self.fwd_btn.grid(column=4, row=0, padx=2, pady=2)
 
     def _config_hdr_labels(self):
@@ -158,27 +154,27 @@ class NgsApp(a_class.BaseApp):
 
         """
         # Page & Pages Label Style
-        pg_label_style = tk.ttk.Style()
+        pg_label_style = ttk.Style()
         pg_label_style.configure('pg.TLabel', font=('calibre', 12, 'bold'),
                                  foreground="black", background="white",
                                  width=6)
         # Page Label
-        self.page_lbl = tk.ttk.Label(self.header, style='pg.TLabel',
-                                     text="Page: ")
+        self.page_lbl = ttk.Label(self.header, style='pg.TLabel',
+                                  text="Page: ")
         self.page_lbl.grid(column=1, row=0, padx=2, pady=2)
         # Pages Label
-        self.pages_lbl = tk.ttk.Label(self.header, style='pg.TLabel',
-                                      text=" of ")
+        self.pages_lbl = ttk.Label(self.header, style='pg.TLabel',
+                                   text=" of ")
         self.pages_lbl.grid(column=3, row=0, padx=2, pady=2)
         # Month Year Label Style
-        mo_yr_style = tk.ttk.Style()
+        mo_yr_style = ttk.Style()
         mo_yr_style.configure('mo_yr.TLabel', font=('calibre', 12, 'bold'),
                               foreground="white", background="green",
                               justify='center')
         # Month Year Label
-        self.mon_yr_lbl = tk.ttk.Label(self.header, style='mo_yr.TLabel',
-                                       text=(str() + " " + str()),
-                                       anchor=tk.CENTER)
+        self.mon_yr_lbl = ttk.Label(self.header, style='mo_yr.TLabel',
+                                    text=(str() + " " + str()),
+                                    anchor=tk.CENTER)
         self.mon_yr_lbl.grid(column=5, row=0, padx=2, pady=2)
 
     def _config_hdr_page_entry(self):
@@ -190,13 +186,13 @@ class NgsApp(a_class.BaseApp):
         None.
 
         """
-        entry_style = tk.ttk.Style()
+        entry_style = ttk.Style()
         entry_style.configure('en.TEntry', font=('calibre', 12, 'bold'),
                               foreground="black", fieldbackground="blue",
                               justify='right')
-        self.page_entry = tk.ttk.Entry(self.header, font=('calibre', 12,
-                                       'bold'), justify='right', width=5,
-                                       background="blue")
+        self.page_entry = ttk.Entry(self.header, font=('calibre', 12,
+                                    'bold'), justify='right', width=5,
+                                    background="blue")
         self.page_entry.grid(column=2, row=0, padx=2, pady=2)
         # bind get_user_page to the enter key is pressed.
         self.page_entry.bind('<Return>', self.get_user_page)
@@ -247,8 +243,8 @@ class NgsApp(a_class.BaseApp):
         # Get a dictionary of dictionaries that contains the years
         # and months of each magazine folder on this disk and
         # the folder that contains that magazine.
-        self.mag_mo_yr_indx = u_files.build_magazine_index(ng_base_path,
-                                                           ng_date_range)
+        self.mag_mo_yr_indx = build_magazine_index(ng_base_path,
+                                                   ng_date_range)
         menu_bar = self.menubar
         # Create the main menu and add it to the root window
         # if after = False ie, there are no other menus
@@ -297,7 +293,7 @@ class NgsApp(a_class.BaseApp):
             child = pathlib.Path(path)
             # year, month, file_path = arg.split(" ")
             self.current_year, self.current_month, \
-                file_path = u_files.decode_dir_name(child)
+                file_path = decode_dir_name(child)
             arg = f"{self.current_year}, {self.current_month}, {file_path}"
             self._change_magazine(arg)
 
@@ -314,7 +310,7 @@ class NgsApp(a_class.BaseApp):
 
         """
         self.current_month, self.current_year = \
-            u_ngs.get_first_mo_yr(self.mag_mo_yr_indx)
+            get_first_mo_yr(self.mag_mo_yr_indx)
 
         d1 = self.mag_mo_yr_indx[self.current_year]
         m_path = d1[self.current_month]
@@ -338,7 +334,7 @@ class NgsApp(a_class.BaseApp):
         # print("_change_magazine:", end="")
         year, month, file_path = arg.split(" ")
 
-        self.page_list = u_files.build_page_list(file_path)
+        self.page_list = build_page_list(file_path)
 
         # Validate pages and page.
         self.valid.pages = (len(self.page_list)-1)
@@ -405,7 +401,7 @@ class NgsApp(a_class.BaseApp):
     def change_page(self):
         """Load a new page set by the calling routine."""
         print("    get_image{}".format(self.valid.page))
-        u_files.get_image(self.body, self.page_list, self.valid.page)
+        get_image(self.body, self.page_list, self.valid.page)
         # Class in init to update button states.
         self._update_btns.state()
 
@@ -515,7 +511,7 @@ class NgsApp(a_class.BaseApp):
 
     def _has_cd(self):
         """Upsate the display if we have a NGS CD in the CDROM drive."""
-        self.ng_base_path, self.ng_date_range = u_files.get_directory()
+        self.ng_base_path, self.ng_date_range = get_directory()
         # change the menu bar to the original menu.
         # On initialization, the super builds this menu, so
         # we do not have to do it again. on changes of CD, the open
@@ -566,7 +562,7 @@ class NgsApp(a_class.BaseApp):
 
         """
         # Remove the existing image from the body frame.
-        u_files._clear_frame(self.body)  # from util_files
+        _clear_frame(self.body)  # from util_files
         message = """
 
 

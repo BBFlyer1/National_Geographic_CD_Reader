@@ -26,14 +26,10 @@ Created on Sun Nov 10 10:45:23 2024.
 
 @author: R. H. Bumpous
 """
-# from ngs_class import NgsApp as appl
-import ngs_class as ngc
-# from util_monitors import cdrom_drawer_monitor
-import util_monitors as u_monitors
-# from util_files import get_compile_time as gct
-import util_files as u_files
-# from os.path import abspath
-import os.path as o_path
+from ngs_class import NgsApp as appl
+from util_monitors import cdrom_drawer_monitor
+from util_files import get_compile_time as gct
+from os.path import abspath
 
 # %% Main routine for
 
@@ -45,14 +41,14 @@ about = f"National Geographic Society Magazines on CD\n\
             Reader Application\n\
 by Robert Bumpous -- BBFlyer1@comcast.net\n\
 Version {version}\n\
-{u_files.get_compile_time(o_path.abspath(__file__))}"
+{gct(abspath(__file__))}"
 
 # set window title
 title = "NGS Magazines on CD"
 
-app = ngc.NgsApp(title=title, about=about)
+app = appl(title=title, about=about)
 
-cdrom_monitor = u_monitors.cdrom_drawer_monitor(app)
+cdrom_monitor = cdrom_drawer_monitor(app)
 cdrom_monitor.start()
 
 app.after(100, cdrom_monitor.monitor_queue)
