@@ -490,7 +490,7 @@ def get_compile_time(file_path, fmt='%m-%d-%Y %H:%M:%S'):
 
     Get the last time the calling program was modified and
     return if as a formated string.  Used by the About
-    Menu to provide information to the user about the appl.
+    submenu to provide information to the user about the appl.
 
     Parameters
     ----------
